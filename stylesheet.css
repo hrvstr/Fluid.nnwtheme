@@ -1,54 +1,40 @@
-/* Shared iOS and macOS CSS rules. Platform specific rules are at the bottom of this file. */
-
 :root {
   color-scheme: light dark;
-  --body-code-color: #111;
-  --code-background-color: #eee;
-  --system-message-color: #cbcbcb;
-  --feedlink-color: rgba(255, 0, 0, 0.6);
-  --article-title-color: #333;
-  --article-date-color: rgba(0, 0, 0, 0.5);
-  --table-cell-border-color: lightgray;
-  --sup-link-color: rgba(255, 255, 255, 0.9);
-  --accent-color: rgba(8, 106, 238, 1);
-  --block-quote-border-color: rgba(0, 0, 0, 0.25);
-  --hover-gradient-color-start: rgba(60, 146, 251, 1);
-  --hover-gradient-color-end: rgba(67, 149, 251, 1);
+  --code: #111;
+  --code-bg: #eee;
+  --msg: #cbcbcb;
+  --feed: rgba(255, 0, 0, 0.6);
+  --text: #333;
+  --date: rgba(0, 0, 0, 0.5);
+  --border: lightgray;
+  --sup-link: rgba(255, 255, 255, 0.9);
+  --accent: #086aee;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --body-code-color: #dcdcdc;
-    --system-message-color: #5f5f5f;
-    --feedlink-color: rgba(94, 158, 244, 1);
-    --article-title-color: #d9e5f2;
-    --article-date-color: #667f99;
-    --table-cell-border-color: #313232;
-    --code-background-color: #333;
-    --accent-color: #56b0f0;
-    --block-quote-border-color: rgba(94, 158, 244, 0.5);
-    --header-table-border-color: rgba(255, 255, 255, 0.1);
-    --hover-gradient-color-start: rgba(41, 121, 213, 1);
-    --hover-gradient-color-end: rgba(42, 120, 212, 1);
+    --code: #bdc3c7;
+    --msg: #5f5f5f;
+    --feed: #5e9ef4;
+    --text: #d9e5f2;
+    --date: #667f99;
+    --border: #313232;
+    --code-bg: #242424;
+    --accent: #8cb2d9;
   }
 }
 
 body {
-  --spacing: 48px;
-  margin-left: auto;
-  margin-right: auto;
-  word-wrap: break-word;
+  --space: 24px;
+  --space-2: calc(var(--space) * 2);
+  margin: var(--space-2) auto;
+  padding: 0 var(--space);
   max-width: 65ch;
-  margin-top: var(--spacing);
-  margin-bottom: var(--spacing);
-  padding-left: var(--spacing);
-  padding-right: var(--spacing);
-  font-family: -apple-system;
-  /* font-family: "Atkinson Hyperlegible Next"; */
-  font-family: "Atkinson Hyperlegible Next";
+  font-family: "Atkinson Hyperlegible Next", -apple-system, sans-serif;
+  word-wrap: break-word;
 }
 
-/* Font Sizes */
+/* Type */
 
 .smallText {
   font-size: 14px;
@@ -70,96 +56,67 @@ body {
   font-size: 22px;
 }
 
-a {
-  text-decoration: none;
-}
-
-/* a:hover {
-  text-decoration: underline;
-} */
-
-body a,
-body a:visited,
-body a * {
-  color: var(--accent-color);
-}
-
-body code,
-body pre {
-  color: var(--body-code-color);
-}
-
-pre {
-  padding: 10px;
-}
-
 h1 {
-  line-height: 1.15em;
+  line-height: 1.15;
   font-weight: bold;
-  padding-bottom: 0;
   margin-bottom: 5px;
 }
 
-pre {
-  max-width: 100%;
-  margin: 0;
-  overflow: auto;
-  overflow-y: hidden;
-  word-wrap: normal;
-  word-break: normal;
-  border-radius: 3px;
-}
-
-pre {
-  line-height: 1.4286em;
+a,
+a:visited,
+body a * {
+  text-decoration: none;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 2px;
 }
 
 code,
 pre {
   font-family: "SF Mono Regular", Menlo, Courier, monospace;
   font-size: 1em;
+  background: var(--code-bg);
+  color: var(--code);
+  hyphens: none;
   -webkit-hyphens: none;
-  background: var(--code-background-color);
 }
-
 code {
   padding: 1px 2px;
   border-radius: 2px;
 }
-
+pre {
+  padding: 10px;
+  margin: 0;
+  max-width: 100%;
+  overflow-x: auto;
+  border-radius: 3px;
+  line-height: 1.43;
+}
 pre code {
   letter-spacing: -0.027em;
-  font-size: 0.9375em;
+  font-size: 0.94em;
 }
 
+/* Defaults */
 img,
 figure,
 video,
 div,
-object {
+object,
+iframe {
   max-width: 100%;
   height: auto !important;
   margin: 0 auto;
 }
-
-iframe {
-  max-width: 100%;
-  margin: 0 auto;
-}
-
 iframe.nnw-constrained {
   max-height: 50vw;
 }
-
 figure {
-  margin-bottom: 1em;
-  margin-top: 1em;
+  margin: 1em 0;
 }
-
 figcaption {
   margin-top: 0.5em;
   font-size: 14px;
-  line-height: 1.3em;
+  line-height: 1.3;
 }
 
 sup {
@@ -167,7 +124,6 @@ sup {
   position: relative;
   bottom: 0.2rem;
 }
-
 sub {
   vertical-align: bottom;
   position: relative;
@@ -175,148 +131,138 @@ sub {
 }
 
 hr {
-  border: 1px solid var(--table-cell-border-color);
+  border: 1px solid var(--border);
 }
 
 blockquote {
-  margin-inline-start: 0;
-  margin-inline-end: 0;
+  margin-inline: 0;
   padding-inline-start: 15px;
-  border-inline-start: 3px solid var(--block-quote-border-color);
+  border-inline-start: 3px solid var(--border);
+}
+
+/* Avatar */
+
+#avatar {
+  border-radius: 4px;
+}
+
+/* Title */
+
+.articleTitle {
+  font-size: 1.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.25rem;
+  text-wrap: balance;
+}
+.articleTitle a {
+  color: white;
+}
+.articleTitle a:hover {
+  text-decoration: underline;
+}
+
+/* Dateline */
+
+.articleDateline {
+  letter-spacing: 0.05em;
+  text-wrap: balance;
+}
+.articleDateline a {
+  color: var(--date);
+}
+.articleDateline a:hover {
+  color: var(--accent);
+  text-decoration: underline;
 }
 
 .author {
-  color: var(--article-date-color);
+  color: var(--date);
 }
 
-#avatar {
-  display: inline;
+.author:not(:empty)::before {
+  content: "— ";
+}
+.author::after {
+  content: " —";
 }
 
-.systemMessage {
-  position: absolute;
-  top: 45%;
-  left: 50%;
-  transform: translateX(-55%) translateY(-50%);
-  -webkit-user-select: none;
-  cursor: default;
-}
-
-body > .systemMessage {
-  color: var(--system-message-color);
-}
-.articleTitle {
-  font-size: 1.5rem;
-  text-wrap: balance;
-  margin-top: 1rem;
-}
-
-.feedlink a:link,
-.feedlink a:visited {
-  color: var(--feedlink-color);
-}
-
-.articleTitle a:link,
-.articleTitle a:visited {
-  color: var(--article-title-color);
-  margin-top: 26px;
-}
-
-.articleDateline {
-  /* font-weight: bold; */
-  /* font-variant-caps: all-small-caps; */
-  letter-spacing: 0.025em;
-}
-
-.articleDateline a:link,
-.articleDateline a:visited {
-  color: var(--article-date-color);
-}
-
-.author:not(:empty)::after,
-.feedlink:not(:empty)::after {
-  content: " – ";
-}
-
-.articleDatelineTitle {
-  margin-bottom: 5px;
-  font-weight: bold;
-  font-variant-caps: all-small-caps;
-}
-
-.articleDatelineTitle a:link,
-.articleDatelineTitle a:visited {
-  color: var(--article-title-color);
-}
-
-.externalLink {
-  display: none;
-}
+/* Body */
 
 .articleBody {
-  margin-top: 1em;
-  line-height: 1.5em;
-  color: #d9e5f2;
-}
-.articleBody a {
-  color: #d9e5f2;
-  text-decoration: underline;
-  text-underline-offset: 2px;
-  text-decoration-color: #d9e5f2;
-  text-decoration-thickness: 2px;
+  margin-top: 1.5rem;
+  line-height: 1.5;
+  color: var(--text);
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: white;
+  line-height: 1.25;
+  margin-top: 3rem;
+}
+
+ul {
+  padding: 0 0.5rem;
+}
+li {
+  list-style: inside;
+}
+
+.articleBody a {
+  text-decoration: none;
+  color: var(--accent);
+}
+
+.articleBody a:hover {
+  text-decoration: underline;
+}
+
+/* Tabellen */
 .nnw-overflow {
   overflow-x: auto;
 }
-
-/*
- Instead of the last-child bits, border-collapse: collapse
- could have been used. However, then the inter-cell borders
- overlap the table border, which looks bad.
- */
 .nnw-overflow table {
   margin-bottom: 1px;
   border-spacing: 0;
   font-size: inherit;
   border-collapse: collapse;
 }
-
-.nnw-overflow table table {
-  margin-bottom: 0;
-  border: none;
-}
-
 .nnw-overflow td,
 .nnw-overflow th {
-  -webkit-hyphens: none;
   word-break: normal;
-  border: 1px solid var(--table-cell-border-color);
+  border: 1px solid var(--border);
   border-top: none;
   border-left: none;
   border-right: none;
   padding: 8px 11px;
   text-align: left;
 }
-
-.nnw-overflow tr :matches(td, th):last-child {
-  border-right: none;
-}
-
-.nnw-overflow
-  :matches(thead, tbody, tfoot):last-child
-  > tr:last-child
-  :matches(td, th) {
-  border-bottom: none;
-}
-
 .nnw-overflow td pre {
   border: none;
   padding: 0;
 }
-
 .nnw-overflow table[border="0"] {
   border-width: 0;
+}
+
+/* Hilfsklassen */
+
+.systemMessage {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-55%, -50%);
+  user-select: none;
+  cursor: default;
+  color: var(--msg);
+}
+
+.externalLink {
+  display: none;
 }
 
 .iframeWrap {
