@@ -32,11 +32,13 @@ body: The body of the article.
 
 <header>
   <img id="avatar" src="[[avatar_src]]" height="48" width="48" />
-  <h1 class="articleTitle"><a href="[[preferred_link]]">[[title]]</a></h1>
+  <h1 class="articleTitle [[text_size_class]]">
+    <a href="[[preferred_link]]">[[title]]</a>
+  </h1>
   <div class="[[dateline_style]]">
     <a class="feedlink" href="[[feed_link]]">[[feed_link_title]]</a>
     <span class="author">[[byline]]</span>
-    <a href="[[preferred_link]]">[[datetime_long]]</a>
+    <a class="datelink" href="[[preferred_link]]">[[datetime_long]]</a>
   </div>
 </header>
 <article class="articleBody [[text_size_class]]">[[body]]</article>
