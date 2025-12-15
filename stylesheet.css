@@ -213,9 +213,11 @@ blockquote {
   font-variant-numeric: tabular-nums;
   /* font-variant: slashed-zero; */
 }
+
 .articleDateline a {
   color: var(--date);
 }
+
 .articleDateline a:hover {
   color: var(--accent);
   text-decoration: underline;
