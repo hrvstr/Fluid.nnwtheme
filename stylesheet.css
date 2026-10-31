@@ -1,13 +1,13 @@
 :root {
   color-scheme: light dark;
+  --bg: #ffffff;
   --fg: #272727;
   --fg-alt: #000000;
   --code: #272727;
-  --code-bg: #eee;
-  --msg: #cbcbcb;
-  --date: #808080;
-  --border: #bdbdbd;
   --code-bg: #e6e6e6;
+  --msg: #cbcbcb;
+  --date: #6b6b6b;
+  --border: #bdbdbd;
   --accent: #0068da;
 
   --step--2: clamp(0.7813rem, 0.7409rem + 0.1795vw, 0.88rem);
@@ -75,9 +75,11 @@ html {
 body {
   margin: 0 auto;
   padding: var(--space-m-l);
-  /* max-width: 60ch; */
-  max-width: clamp(60ch, 65ch, 70ch);
-  font-family: "Atkinson Hyperlegible Next", -apple-system, sans-serif;
+  max-width: 65ch;
+  font-family:
+    "Atkinson Hyperlegible Next",
+    -apple-system,
+    sans-serif;
   background: var(--bg);
   overflow-wrap: break-word;
   /* overflow-y: scroll; */
@@ -109,8 +111,9 @@ a {
 
 code,
 pre {
-  font-family: "Atkinson Hyperlegible Mono", "JetBrains Mono", "SF Mono Regular",
-    Menlo, Courier, monospace;
+  font-family:
+    "Atkinson Hyperlegible Mono", "JetBrains Mono", "SF Mono Regular", Menlo,
+    Courier, monospace;
   font-size: var(--step--1);
   background: var(--code-bg);
   color: var(--code);
@@ -262,4 +265,14 @@ blockquote {
   user-select: none;
   cursor: default;
   color: var(--msg);
+}
+
+@supports (-webkit-touch-callout: none) {
+  :root {
+    --bg: #000000;
+  }
+
+  body {
+    padding: var(--space-xs);
+  }
 }
