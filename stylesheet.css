@@ -1,4 +1,6 @@
 :root {
+  /* ------------------------------- Light Mode ------------------------------- */
+
   color-scheme: light dark;
   --bg: #ffffff;
   --fg: #272727;
@@ -10,6 +12,14 @@
   --border: #bdbdbd;
   --accent: #0068da;
 
+  /* ---------------------------------- Fonts --------------------------------- */
+  --font-body:
+    "Atkinson Hyperlegible Next", system-ui, -apple-system, BlinkMacSystemFont,
+    sans-serif;
+  --font-mono:
+    "Atkinson Hyperlegible Mono", "JetBrains Mono", "SF Mono Regular", Menlo,
+    Courier, monospace;
+
   --step--2: clamp(0.7813rem, 0.7409rem + 0.1795vw, 0.88rem);
   --step--1: clamp(0.9375rem, 0.871rem + 0.2955vw, 1.1rem);
   --step-0: clamp(1.125rem, 1.0227rem + 0.4545vw, 1.375rem);
@@ -18,6 +28,8 @@
   --step-3: clamp(1.944rem, 1.6406rem + 1.3483vw, 2.6855rem);
   --step-4: clamp(2.3328rem, 1.9138rem + 1.8621vw, 3.3569rem);
   --step-5: clamp(2.7994rem, 2.2279rem + 2.5396vw, 4.1962rem);
+
+  /* --------------------------------- Spacing -------------------------------- */
 
   --space-3xs: clamp(0.3125rem, 0.3125rem + 0vw, 0.3125rem);
   --space-2xs: clamp(0.5625rem, 0.5408rem + 0.1087vw, 0.625rem);
@@ -33,6 +45,7 @@
 }
 
 @media (prefers-color-scheme: dark) {
+  /* -------------------------------- Dark Mode ------------------------------- */
   :root {
     --bg: #1c1c1c;
     --fg: #e6e6e6;
@@ -46,21 +59,7 @@
   }
 }
 
-html:has(.smallText) {
-  font-size: 14px;
-}
-html:has(.mediumText) {
-  font-size: 16px;
-}
-html:has(.largeText) {
-  font-size: 18px;
-}
-html:has(.xlargeText) {
-  font-size: 20px;
-}
-html:has(.xxlargeText) {
-  font-size: 22px;
-}
+/* -------------------------------- Defaults -------------------------------- */
 
 html {
   overflow-y: scroll;
@@ -75,32 +74,10 @@ html {
 body {
   margin: 0 auto;
   padding: var(--space-m-l);
-  max-width: 65ch;
-  font-family:
-    "Atkinson Hyperlegible Next",
-    -apple-system,
-    sans-serif;
+  /* max-width: 65ch; */
+  font-family: var(--font-body);
   background: var(--bg);
   overflow-wrap: break-word;
-  /* overflow-y: scroll; */
-}
-
-/* body::-webkit-scrollbar {
-  display: none;
-} */
-
-/* Defaults */
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  color: var(--fg-alt);
-  line-height: 1.25;
-  margin-top: var(--space-xl);
-  text-wrap: balance;
 }
 
 a {
@@ -111,9 +88,7 @@ a {
 
 code,
 pre {
-  font-family:
-    "Atkinson Hyperlegible Mono", "JetBrains Mono", "SF Mono Regular", Menlo,
-    Courier, monospace;
+  font-family: var(--font-mono);
   font-size: var(--step--1);
   background: var(--code-bg);
   color: var(--code);
@@ -184,13 +159,43 @@ blockquote {
   color: white;
 }
 
-/* Avatar */
+/* --------------------------------- Avatar --------------------------------- */
 
 #avatar {
   border-radius: 4px;
 }
 
-/* Title */
+/* -------------------------------- Headlines ------------------------------- */
+
+html:has(.smallText) {
+  font-size: 14px;
+}
+html:has(.mediumText) {
+  font-size: 16px;
+}
+html:has(.largeText) {
+  font-size: 18px;
+}
+html:has(.xlargeText) {
+  font-size: 20px;
+}
+html:has(.xxlargeText) {
+  font-size: 22px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--fg-alt);
+  line-height: 1.25;
+  margin-top: var(--space-xl);
+  text-wrap: balance;
+}
+
+/* ---------------------------------- Title --------------------------------- */
 
 .articleTitle {
   font-size: var(--step-1);
@@ -207,37 +212,64 @@ blockquote {
   text-decoration: underline;
 }
 
-/* Dateline */
+/* -------------------------------- Dateline -------------------------------- */
 
-.articleDateline {
+.articleDateline,
+.articleDatelineTitle {
   font-size: var(--step--1);
-  /* letter-spacing: 0.025em; */
   text-wrap: balance;
   font-variant-numeric: tabular-nums;
-  /* font-variant: slashed-zero; */
 }
 
-.articleDateline a {
+.articleDateline a,
+.articleDatelineTitle a {
   color: var(--date);
 }
 
-.articleDateline a:hover {
+.articleDateline a:hover,
+.articleDatelineTitle a:hover {
   color: var(--accent);
   text-decoration: underline;
 }
+
+/* Author */
 
 .author {
   color: var(--date);
 }
 
 .author:not(:empty)::before {
-  content: "— ";
+  content: "· ";
 }
 .author::after {
-  content: " —";
+  content: " ·";
 }
 
-/* Body */
+/* External Link */
+
+.externalLink {
+  margin: var(--space-xs) 0;
+  font-size: var(--step--1);
+  font-style: italic;
+  /* TODO: Where/when is this displayed? */
+  color: red !important;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.externalLink a {
+  color: inherit;
+  font-size: 0.85em;
+  font-style: normal;
+}
+
+.externalLink:has(a[href=""]) {
+  display: none;
+}
+
+/* ---------------------------------- Body ---------------------------------- */
 
 .articleBody {
   font-size: var(--step-0);
@@ -255,7 +287,7 @@ blockquote {
   text-decoration: underline;
 }
 
-/* Misc */
+/* ---------------------------------- Misc ---------------------------------- */
 
 .systemMessage {
   position: absolute;
