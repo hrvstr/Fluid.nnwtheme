@@ -80,6 +80,26 @@ body {
   overflow-wrap: break-word;
 }
 
+body::before,
+body::after {
+  position: fixed;
+  z-index: 10;
+  inset-inline: 0;
+  height: var(--space-l);
+  content: "";
+  pointer-events: none;
+}
+
+body::before {
+  top: 0;
+  background: linear-gradient(to bottom, var(--bg), transparent);
+}
+
+body::after {
+  bottom: 0;
+  background: linear-gradient(to top, var(--bg), transparent);
+}
+
 a {
   text-decoration: none;
   text-underline-offset: 2px;
@@ -276,6 +296,7 @@ h6 {
   color: var(--fg);
   margin-top: var(--space-s);
   line-height: calc(1ex / 0.32);
+  max-width: 65ch;
 }
 
 .articleBody a {
